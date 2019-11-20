@@ -17,10 +17,8 @@ jobs:
       uses: actions/setup-dotnet@v1
       with:
         dotnet-version: 3.0.100
-    - name: Build with dotnet
-      run: dotnet build ./beitostolen-live-advent.sln --configuration Release
     - name: Publish with dotnet
-      run: dotnet publish -o ./beitostolen-live-advent-artifacts --no-build --no-restore
+      run: dotnet publish -o ./beitostolen-live-advent-artifacts
     - name: Zip artifacts
       uses: montudor/action-zip@v0.1.0
       with:
