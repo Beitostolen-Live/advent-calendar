@@ -1,0 +1,113 @@
+﻿@page "{id}"
+@namespace beitostolen_live_api.Pages.Admin.Responses
+@model WinnerModel
+
+<partial name="_Navbar" />
+
+<form method="post">
+    <input type="hidden" asp-for="Winner.Id" />
+    <div id="mainContent">
+        <div class="row">
+            <div class="col-md-12">
+                <input type="hidden" asp-for="Winner.Title" />
+                <h1>@Model.Winner.Title</h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                Status:
+                <select asp-for="Winner.Status" asp-items="Model.StatusList" class="form-control form-control-lg" readonly="@(Model.Winner.Status==Models.WinnerStatus.Completed ? "readonly" : null)"></select>
+            </div>
+            <div class="col-md-6">
+                Only responses with correct answer:
+                <input type="checkbox" asp-for="Winner.OnlyWithCorrectAnswer" class="form-control" readonly="@(Model.Winner.Status==Models.WinnerStatus.Completed ? "readonly" : null)" />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="winnerFromDate">From date</label>
+                    <input type="date" asp-for="Winner.StartDate" class="form-control" id="winnerFromDate" readonly="@(Model.Winner.Status==Models.WinnerStatus.Completed ? "readonly" : null)" />
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="winnerToDate">To date</label>
+                    <input type="date" asp-for="Winner.EndDate" class="form-control" id="winnerToDate" readonly="@(Model.Winner.Status==Models.WinnerStatus.Completed ? "readonly" : null)" />
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="form-group">
+                    <label for="winnerComment">Comment</label>
+                    <textarea class="form-control" asp-for="Winner.Comment" id="winnerComment" rows="3" readonly="@(Model.Winner.Status==Models.WinnerStatus.Completed ? "readonly" : null)"></textarea>
+                </div>
+            </div>
+        </div>
+        @if (Model.Winner.Alternative != null)
+        {
+            <div class="row">
+                <div class="col-md-6">
+                    <h1>Question</h1>
+                    <input type="hidden" asp-for="Winner.Alternative.Question.Id" />
+                    <div class="row">
+                        <div class="col-md-4">Question date</div>
+                        <div class="col-md-8">@Model.Winner.Alternative.Question.QuestionForDate.ToString("dd. MMMM yyyy")</div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">Question</div>
+                        <div class="col-md-8">@Model.Winner.Alternative.Question.Text</div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">Alternatives</div>
+                        <div class="col-md-8"></div>
+                    </div>
+                    @foreach(var alt in Model.Winner.Alternative.Question.Alternatives)
+                    {
+                        @if(alt.IsCorrect)
+                        {
+                            <div class="row bg-success">
+                                <div class="col-md-4"></div>
+                                <div class="col-md-8">@alt.Description</div>
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="row">
+                                <div class="col-md-4"></div>
+                                <div class="col-md-8">@alt.Description</div>
+                            </div>
+                        }
+                            
+                    }
+                </div>
+                <div class="col-md-6">
+                    <h1>Winner</h1>
+                    <input type="hidden" asp-for="Winner.Alternative.Id" />
+                    <div class="row">
+                        <div class="col-md-4">Name</div>
+                        <div class="col-md-8">@Model.Winner.Alternative.Name</div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">Email</div>
+                        <div class="col-md-8">@Model.Winner.Alternative.Email</div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">Answer</div>
+                        <div class="col-md-8">@Model.Winner.Alternative.Answear.Description</div>
+                    </div>
+                </div>
+            </div>
+        }
+        @if (Model.Winner.Status != Models.WinnerStatus.Completed)
+        {
+            <div class="row">
+                <div class="col-md-12">
+                    <button type="submit" class="btn btn-primary mb-2">Edit</button>
+                    <button type="submit" class="btn btn-primary mb-2" asp-page-handler="Repick">Re-pick winner</button>
+                </div>
+            </div>
+        }
+    </div>
+</form>

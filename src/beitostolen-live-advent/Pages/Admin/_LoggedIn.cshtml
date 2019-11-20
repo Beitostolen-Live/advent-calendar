@@ -1,0 +1,14 @@
+﻿@using Microsoft.AspNetCore.Identity
+
+@if (User.Identity.IsAuthenticated)
+{
+    <span class="navbar-text">
+        Logget inn @User.Identity.Name
+    </span>
+}
+else
+{
+    <span class="navbar-text">
+        Du er ikke logget inn!
+    </span>
+}

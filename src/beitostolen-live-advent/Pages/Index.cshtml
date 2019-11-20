@@ -1,0 +1,25 @@
+﻿@page
+@model IndexModel
+@{
+    Layout = "_Layout";
+    ViewData["Title"] = "Beitostølen Live - Julekalender";
+}
+
+@section SOMETAGS
+{
+    <meta property="og:title" content="Beitostølen Live Adventkalender @DateTime.Today.Year">
+    <meta property="og:description" content="Fra 1. desember til 24. desember med nytt spørsmål og muligheter til å vinne flotte premier.">
+    <meta property="og:image" content="https://beitostolenlive.no/content/images/2019/08/LOGO-MSOL.png">
+    <meta property="og:url" content="https://advent.beitostolenlive.no">
+}
+
+@if (Model.IsActive)
+{
+    <div id="mainContent" class="wrapper">
+        <partial name="_AdventCalendar" />
+    </div>
+}
+else
+{
+    <partial name="_CountDown" />
+}

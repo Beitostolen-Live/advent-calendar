@@ -1,0 +1,68 @@
+﻿<!DOCTYPE html>
+<html>
+    <head>
+        <title>@ViewData["Title"]</title>
+        <meta name="description" content="The weekly ASP.NET Community Standup covers live community Q&amp;A, product team discussion, and the most recent updates. Hosted by Scott Hanselman, Damian Edwards, and Jon Galloway. Recordings of previous meetings are available." />
+        <link rel="shortcut icon" href="~/favicon.ico" />
+        <environment include="Development">
+            <link rel="stylesheet" href="~/css/site.css" />
+        </environment>
+        <environment exclude="Development">
+        </environment>
+        @RenderSection("SOMETAGS", false)
+    </head>
+    <body>
+        <nav>
+            <div class="wrapper">
+                <span class="blButton">
+                    <a href="/">Julekalender</a>
+                </span>
+                <span class="blButton">
+                    <a href="https://www.beitostolenlive.no/p/c3014a65-9d06-4d4d-b50b-971b2affb74e/">Info</a>
+                </span>
+                <span class="blButton">
+                    <a href="https://www.ticketmaster.no/event/614743">Billetter</a>
+                </span>
+                <span class="blButton">
+                    <a href="https://www.beitostolenlive.no">Beitostølen Live</a>
+                </span>
+            </div>
+        </nav>
+        @RenderBody()
+        <footer>
+            <div class="wrapper">
+                <div id="footerInfo">
+                    <div class="inlineBlock">
+                        <span>Kontaktinfo</span>
+                    </div>
+                    <div class="inlineBlock">
+                        <span>Kontakt:</span>
+                        <span>post@beitostolenlive.no</span>
+                    </div>
+                    <div class="inlineBlock">
+                        <span>SOME:</span>
+                        <span>some@beitostolenlive.no</span>
+                    </div>
+                </div>
+                <div id="footerCredits">
+                    <div class="inlineBlock">
+                        <span>Design:</span>
+                        <span>Deformat</span>
+                    </div>
+                    <div class="inlineBlock">
+                        <span>Web:</span>
+                        <span>Teis Lindemark</span>
+                    </div>
+                    <div class="inlineBlock">
+                        <span>
+                            <a href="">Informasjon om cookies</a>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <script src="/js/site.js"></script>
+        <div id="fb-root"></div>
+        <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v5.0&appId=451699765696538&autoLogAppEvents=1"></script>
+    </body>
+</html>

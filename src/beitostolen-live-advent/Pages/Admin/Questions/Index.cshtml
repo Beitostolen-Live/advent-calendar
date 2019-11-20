@@ -1,0 +1,102 @@
+﻿@page
+@namespace beitostolen_live_api.Pages.Admin.Questions
+@model IndexModel
+
+<partial name="_Navbar" />
+
+@if (User.Identity.IsAuthenticated)
+{
+    <div id="mainContent">
+        <div class="row">
+            <div class="col">
+                <form enctype="multipart/form-data" method="post">
+                <div class="form-group">
+                    <label for="questionImage">Image</label>
+                    <input type="date" class="form-control-file" id="questionImage" asp-for="Date">
+                </div>
+                  <div class="form-group">
+                    <label for="question">Question</label>
+                    <input type="text" class="form-control" id="question" aria-describedby="emailHelp" placeholder="Enter question" asp-for="Question">
+                    <small id="emailHelp" class="form-text text-muted">Type question</small>
+                  </div>
+                <div class="form-group">
+                    <label asp-for="ImageFile">Image</label>
+                    <input type="file" class="form-control-file" asp-for="ImageFile">
+                </div>
+                <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <div class="input-group-text">
+                      <input type="checkbox" aria-label="Rett svar" asp-for="IsCirrect1">
+                    </div>
+                  </div>
+                  <input type="text" class="form-control" aria-label="Alternativ" asp-for="Alternative1">
+                </div>
+                <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <div class="input-group-text">
+                      <input type="checkbox" aria-label="Rett svar" asp-for="IsCirrect2">
+                    </div>
+                  </div>
+                  <input type="text" class="form-control" aria-label="Alternativ" asp-for="Alternative2">
+                </div>
+                <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <div class="input-group-text">
+                      <input type="checkbox" aria-label="Rett svar" asp-for="IsCirrect3">
+                    </div>
+                  </div>
+                  <input type="text" class="form-control" aria-label="Alternativ" asp-for="Alternative3">
+                </div>
+                  <button type="submit" class="btn btn-primary">Add question</button>
+                </form>
+            </div>
+            <div class="col" id="questionOverview">
+                <div class="card">
+                  <div class="card-header">
+                    @foreach(var question in Model.Questions)
+                    {
+                        <h2 class="mb-0">
+                            <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseQuestion-@question.Id" aria-expanded="false" aria-controls="collapseQuestion-@question.Id">
+                                @question.QuestionForDate.ToString("dd. MMMM yyyy")
+                            </button>
+                        </h2>
+                        <div id="collapseQuestion-@question.Id" class="collapse" aria-labelledby="headingThree" data-parent="#questionOverview">
+                          <div class="card-body">
+                            <div class="form-group">
+                                <label for="question">Question</label>
+                                <input type="text" class="form-control" id="question" aria-describedby="emailHelp" value="@question.Text" asp-for="Question" readonly>
+                                <small id="emailHelp" class="form-text text-muted">Type question</small>
+                            </div>
+                            <div class="form-group">
+                                <label>Image</label>
+                                <img src="@question.Image" alt="@question.Text" class="img-thumbnail">
+                            </div>
+                            <ul class="list-group">
+                                @foreach(var alt in question.Alternatives)
+                                {
+                                    @if (alt.IsCorrect)
+                                    {
+                                        <li class="list-group-item bg-success text-white">@alt.Description</li>
+                                    }
+                                    else
+                                    {
+                                        <li class="list-group-item">@alt.Description</li>
+                                    }
+                                }
+                            </ul>
+                            <a href="/Admin/Questions/Edit/@question.Id" class="btn btn-primary">Edit Question</a>
+                          </div>
+                        </div>
+                    }
+                  </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+else
+{
+    <div id="mainContent" class="wrapper">
+        <h1>Du har ikke tilgang.</h1>
+    </div>
+}

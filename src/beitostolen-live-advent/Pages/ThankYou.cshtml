@@ -1,0 +1,20 @@
+﻿@page
+@model ThankYouModel
+@using System.Security.Claims
+
+@{
+    Layout = "_Layout";
+    ViewData["Title"] = "Beitostølen Live - Julekalender";
+}
+
+<div id="mainContent" class="wrapper">
+    <h1>Takk</h1>
+    <div    class="fb-like"
+            data-href="https://advent.beitostolenlive.no/day/@Model.CurrentDate.Day"
+            data-width=""
+            data-layout="standard"
+            data-action="like"
+            data-size="large"
+            data-show-faces="true"
+            data-share="true"></div>
+</div>

@@ -1,0 +1,50 @@
+﻿@page "/day/{id?}"
+@model DayModel
+@using System.Security.Claims
+
+@{
+    Layout = "_Layout";
+    ViewData["Title"] = "Beitostølen Live - Julekalender";
+}
+
+@if (Model.IsActive)
+{
+    @section SOMETAGS
+    {
+        <meta property="og:title" content="Beitostølen Live Adventkalender - {@Model.Id}. Desember">
+        <meta property="og:description" content="@Model.Question.Text">
+        <meta property="og:image" content="@Model.Question.Image">
+        <meta property="og:url" content="https://advent.beitostolenlive.no/day/@Model.Id">
+    }
+
+    <div id="mainContent" class="wrapper">
+        <div id="questionContainer">
+            <div class="dayContainer">
+                <img class="dayImage" src='@Model.Question.Image'/>
+            </div>
+            <div class="dayContainer">
+                <div class="dayHeader"><span>@Model.Id</span>. Desember @DateTime.Today.Year</div>
+            </div>
+            <div class="dayContainer paintbg">
+                <div class="dayHeader">@Model.Question.Text</div>
+            </div>
+            <form id="alternatives" method="post">
+                @foreach (var alt in Model.Question.Alternatives)
+                {
+                    <div class="checkbox">
+                        <input type="radio" id="radio-@alt.Id" asp-for="SelectedAlternativId" value="@alt.Id" />
+                        <label for="radio-@alt.Id">@alt.Description</label>
+                    </div>
+                }
+                <div></div>
+                <input type="submit"/>
+            </form>
+        </div>
+    </div>
+}
+else
+{
+    <div id="mainContent" class="wrapper">
+        <h1>Test</h1>
+    </div>
+}

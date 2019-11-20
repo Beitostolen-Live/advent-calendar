@@ -1,0 +1,48 @@
+﻿@page "{id}"
+@namespace beitostolen_live_api.Pages.Admin.Questions
+@model EditModel
+
+<partial name="_Navbar" />
+
+<div id="mainContent">
+    <div class="row">
+        <div class="col">
+            <form enctype="multipart/form-data" method="post">
+                <div class="form-group">
+                    <label for="questionImage">Date</label>
+                    <input type="date" class="form-control-file" id="questionDate" asp-for="Date">
+                </div>
+                <div class="form-group">
+                    <label for="question">Question</label>
+                    <input type="text" class="form-control" id="question" aria-describedby="emailHelp" placeholder="Enter question" asp-for="Question">
+                    <small id="emailHelp" class="form-text text-muted">Type question</small>
+                </div>
+                <div class="form-group">
+                    <label asp-for="ImageFile">Image</label>
+                    <img src="@Model.ImageString" alt="@Model.Question" class="img-thumbnail">
+                    <input type="hidden" asp-for="ImageString" />
+                    <input type="file" class="form-control-file" asp-for="ImageFile">
+                </div>
+                @for(var i=0; i<Model.Alternatives.Count;i++)
+                {
+                    <input type="hidden" asp-for="Alternatives[i].Alternative.Id" />
+                    <input type="hidden" asp-for="Alternatives[i].Alternative.Question" />
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text">
+                                <input type="checkbox" aria-label="Rett svar" asp-for="Alternatives[i].Alternative.IsCorrect">
+                            </div>
+                        </div>
+                        <input type="text" class="form-control" aria-label="Alternativ" asp-for="Alternatives[i].Alternative.Description">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text">
+                                <input type="checkbox" aria-label="Should delete" asp-for="Alternatives[i].ShouldDelete">
+                            </div>
+                        </div>
+                    </div>
+                }
+                <button type="submit" class="btn btn-primary">Edit question</button>
+            </form>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,158 @@
+﻿@page
+@namespace beitostolen_live_api.Pages.Admin.Responses
+@model IndexModel
+
+<partial name="_Navbar" />
+
+<div id="mainContent">
+    <div class="row">
+        <div class="col">
+            <h1>Winners</h1>
+            <form method="post">
+                <div class="form-row">
+                    <div class="form-group col-md-12">
+                        <label for="inputTitle">Title</label>
+                        <input type="text" asp-for="NewWinner.Title" class="form-control" id="inputTitle" placeholder="Title">
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="inputFromDate">From Date</label>
+                        <input type="date" asp-for="NewWinner.StartDate" class="form-control" id="inputFromDate" placeholder="From date">
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="inputToDate">To Date</label>
+                        <input type="date" asp-for="NewWinner.EndDate" class="form-control" id="inputToDate" placeholder="To date">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" asp-for="NewWinner.OnlyWithCorrectAnswer" id="onlyWithRightAnswers">
+                        <label class="form-check-label" for="onlyWithRightAnswers">
+                            Only with correct answers
+                        </label>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary">Pick a winner</button>
+            </form>
+            <hr />
+            <div class="card" id="winnersOverview">
+                <div class="card-header">
+                @foreach(var winner in Model.Winners)
+                {
+                    <h2 class="mb-0">
+                        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseQuestion-@winner.Id" aria-expanded="false" aria-controls="collapseQuestion-@winner.Id">
+                            Period: @winner.StartDate.ToString("dd. MMMM yyyy") to @winner.EndDate.ToString("dd. MMMM yyyy")
+                        </button>
+                    </h2>
+                    <div id="collapseQuestion-@winner.Id" class="collapse" aria-labelledby="headingThree" data-parent="#winnersOverview">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-2">
+                                    Title
+                                </div>
+                                <div class="col-md-6">
+                                    @winner.Title
+                                </div>
+                                <div class="col-md-4">
+                                    @winner.Status
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-2">
+                                    Question
+                                </div>
+                                <div class="col-md-10">
+                                    @winner.Alternative.Question.Text
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-2">
+                                    Comment
+                                </div>
+                                <div class="col-md-10">
+                                    @winner.Comment
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-2">
+                                    Winner
+                                </div>
+                                <div class="col-md-5">
+                                    @winner.Alternative.Name
+                                </div>
+                                <div class="col-md-5">
+                                    @winner.Alternative.Email
+                                </div>
+                            </div>
+                            @if (winner.Status != Models.WinnerStatus.Completed)
+                            {
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <a href="/Admin/Responses/Winner/@winner.Id" class="btn btn-primary">Edit Winner</a>
+                                    </div>
+                                </div>
+                            }
+                            else
+                            {
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <a href="/Admin/Responses/Winner/@winner.Id" class="btn btn-primary">View Winner</a>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                }
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card" id="responsesOverview">
+                <div class="card-header">
+                    @foreach(var responseGroup in Model.Responses)
+                    {
+                        <h2 class="mb-0">
+                            <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseQuestion-@responseGroup.Question.Id" aria-expanded="false" aria-controls="collapseQuestion-@responseGroup.Question.Id">
+                                @responseGroup.Question.QuestionForDate.ToString("dd. MMMM yyyy") - @responseGroup.Question.Text
+                            </button>
+                        </h2>
+                        <div id="collapseQuestion-@responseGroup.Question.Id" class="collapse" aria-labelledby="headingThree" data-parent="#responsesOverview">
+                            <div class="card-body">
+                                <div class="row bg-info text-white">
+                                    <div class="col-md-2">Totalt</div>
+                                    <div class="col-md-2">@responseGroup.Responses.Count</div>
+                                    <div class="col-md-2">Riktige</div>
+                                    <div class="col-md-2">@responseGroup.Responses.Where(w => w.Answear.IsCorrect).Count()</div>
+                                    <div class="col-md-2">Feil</div>
+                                    <div class="col-md-2">@responseGroup.Responses.Where(w => !w.Answear.IsCorrect).Count()</div>
+                                </div>
+                                <div class="row bg-primary text-white">
+                                    <div class="col-md-3">Name</div>
+                                    <div class="col-md-3">E-mail</div>
+                                    <div class="col-md-3">Registered</div>
+                                    <div class="col-md-3">Answer</div>
+                                </div>
+                                @foreach(var response in responseGroup.Responses)
+                                {
+                                    <div class="row @(response.Answear.IsCorrect ? "bg-success text-white" : "bg-danger text-white")">
+                                        <div class="col-md-3">
+                                            @response.Name
+                                        </div>
+                                        <div class="col-md-3">
+                                            @response.Email
+                                        </div>
+                                        <div class="col-md-3">
+                                            @response.Registered.ToLocalTime().ToString("dd.MM.yy HH:mm")
+                                        </div>
+                                        <div class="col-md-3">
+                                            @response.Answear.Description
+                                        </div>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

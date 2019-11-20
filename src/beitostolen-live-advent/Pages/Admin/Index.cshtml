@@ -1,0 +1,17 @@
+﻿@page
+@namespace beitostolen_live_api.Pages.Admin
+
+<partial name="_Navbar" />
+
+@if (User.Identity.IsAuthenticated)
+{
+    <div id="mainContent" class="wrapper">
+        <h1>@User.Identity.Name</h1>
+    </div>
+}
+else
+{
+    <div id="mainContent" class="wrapper">
+        <h1>Du har ikke tilgang.</h1>
+    </div>
+}
