@@ -8,7 +8,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{83910650-82AE-4A49-ACF4-B5D7617CB74D}"
 	ProjectSection(SolutionItems) = preProject
 		README.md = README.md
-		src\beitostolen-live-api\docker-compose.yml = src\beitostolen-live-api\docker-compose.yml
+		src\beitostolen-live-advent\docker-compose.yml = src\beitostolen-live-advent\docker-compose.yml
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "beitostolen-live-advent", "src\beitostolen-live-advent\beitostolen-live-advent.csproj", "{AEFB8E96-F894-4E40-8E2D-F6FD535E5BAB}"
