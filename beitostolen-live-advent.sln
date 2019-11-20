@@ -5,13 +5,13 @@ VisualStudioVersion = 15.0.26124.0
 MinimumVisualStudioVersion = 15.0.26124.0
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{115DD29C-1A61-400E-A62D-71A0E93AFADE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "beitostolen-live-adevent", "src\beitostolen-live-advent\beitostolen-live-api.csproj", "{80ABA93F-725E-4E5F-B3F8-580211675130}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{83910650-82AE-4A49-ACF4-B5D7617CB74D}"
 	ProjectSection(SolutionItems) = preProject
 		README.md = README.md
-		src\beitostolen-live-api\docker-compose.yml = src\beitostolen-live-advent\docker-compose.yml
+		src\beitostolen-live-api\docker-compose.yml = src\beitostolen-live-api\docker-compose.yml
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "beitostolen-live-advent", "src\beitostolen-live-advent\beitostolen-live-advent.csproj", "{AEFB8E96-F894-4E40-8E2D-F6FD535E5BAB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -26,20 +26,20 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{80ABA93F-725E-4E5F-B3F8-580211675130}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{80ABA93F-725E-4E5F-B3F8-580211675130}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{80ABA93F-725E-4E5F-B3F8-580211675130}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{80ABA93F-725E-4E5F-B3F8-580211675130}.Debug|x64.Build.0 = Debug|Any CPU
-		{80ABA93F-725E-4E5F-B3F8-580211675130}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{80ABA93F-725E-4E5F-B3F8-580211675130}.Debug|x86.Build.0 = Debug|Any CPU
-		{80ABA93F-725E-4E5F-B3F8-580211675130}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{80ABA93F-725E-4E5F-B3F8-580211675130}.Release|Any CPU.Build.0 = Release|Any CPU
-		{80ABA93F-725E-4E5F-B3F8-580211675130}.Release|x64.ActiveCfg = Release|Any CPU
-		{80ABA93F-725E-4E5F-B3F8-580211675130}.Release|x64.Build.0 = Release|Any CPU
-		{80ABA93F-725E-4E5F-B3F8-580211675130}.Release|x86.ActiveCfg = Release|Any CPU
-		{80ABA93F-725E-4E5F-B3F8-580211675130}.Release|x86.Build.0 = Release|Any CPU
+		{AEFB8E96-F894-4E40-8E2D-F6FD535E5BAB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AEFB8E96-F894-4E40-8E2D-F6FD535E5BAB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AEFB8E96-F894-4E40-8E2D-F6FD535E5BAB}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{AEFB8E96-F894-4E40-8E2D-F6FD535E5BAB}.Debug|x64.Build.0 = Debug|Any CPU
+		{AEFB8E96-F894-4E40-8E2D-F6FD535E5BAB}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{AEFB8E96-F894-4E40-8E2D-F6FD535E5BAB}.Debug|x86.Build.0 = Debug|Any CPU
+		{AEFB8E96-F894-4E40-8E2D-F6FD535E5BAB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AEFB8E96-F894-4E40-8E2D-F6FD535E5BAB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AEFB8E96-F894-4E40-8E2D-F6FD535E5BAB}.Release|x64.ActiveCfg = Release|Any CPU
+		{AEFB8E96-F894-4E40-8E2D-F6FD535E5BAB}.Release|x64.Build.0 = Release|Any CPU
+		{AEFB8E96-F894-4E40-8E2D-F6FD535E5BAB}.Release|x86.ActiveCfg = Release|Any CPU
+		{AEFB8E96-F894-4E40-8E2D-F6FD535E5BAB}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{80ABA93F-725E-4E5F-B3F8-580211675130} = {115DD29C-1A61-400E-A62D-71A0E93AFADE}
+		{AEFB8E96-F894-4E40-8E2D-F6FD535E5BAB} = {115DD29C-1A61-400E-A62D-71A0E93AFADE}
 	EndGlobalSection
 EndGlobal
