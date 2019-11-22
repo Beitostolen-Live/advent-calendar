@@ -18,7 +18,7 @@ jobs:
       with:
         dotnet-version: 3.0.100
     - name: Publish with dotnet
-      run: dotnet publish -o ./beitostolen-live-advent-artifacts
+      run: dotnet publish -c Release -o ./beitostolen-live-advent-artifacts
     - name: Zip artifacts
       uses: montudor/action-zip@v0.1.0
       with:
