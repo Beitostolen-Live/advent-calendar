@@ -50,6 +50,28 @@ nav {
     padding: 10px;
 }
 
+.columnWrapper {
+    margin-top: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    width: 100%;
+    height: 90%;
+}
+
+.thankYouContent {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+}
+
+h1.thankYou {
+    font-family: BLWebHeader;
+    text-transform: uppercase;
+}
+
 a {
     color: #fff;
     text-decoration: none;

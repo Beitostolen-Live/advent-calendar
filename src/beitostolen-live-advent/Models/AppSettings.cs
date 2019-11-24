@@ -5,5 +5,6 @@ namespace beitostolen_live_api.Models
     {
         public string DefaultConnection { get; set; }
         public bool TestingMode { get; set; }
+        public string BaseUrl { get; set; }
     }
 }

@@ -38,7 +38,7 @@
 }
 
 (function () {
-    //countdown('12/01/2019 00:00:00 AM');
-    var startDate = new Date(2019, 12, 1);
-    countdown(startDate);
+    countdown('12/01/2019 00:00:00 AM');
+    //var startDate = new Date(2019, 12, 1);
+    //countdown(startDate);
 }());

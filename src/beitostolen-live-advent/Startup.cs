@@ -24,6 +24,7 @@ using Microsoft.AspNetCore.Authentication.Facebook;
 using beitostolen_live_api.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Authentication.OAuth.Claims;
+using Microsoft.AspNetCore.HttpOverrides;
 
 namespace beitostolen_live_api
 {
@@ -171,6 +172,11 @@ namespace beitostolen_live_api
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
+            });
+
+            app.UseForwardedHeaders(new ForwardedHeadersOptions
+            {
+                ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto
             });
         }
 

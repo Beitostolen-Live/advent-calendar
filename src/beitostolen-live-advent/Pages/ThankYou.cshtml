@@ -1,6 +1,5 @@
 ﻿@page
 @model ThankYouModel
-@using System.Security.Claims
 
 @{
     Layout = "_Layout";
@@ -8,13 +7,19 @@
 }
 
 <div id="mainContent" class="wrapper">
-    <h1>Takk</h1>
-    <div    class="fb-like"
-            data-href="https://advent.beitostolenlive.no/day/@Model.CurrentDate.Day"
-            data-width=""
-            data-layout="standard"
-            data-action="like"
-            data-size="large"
-            data-show-faces="true"
-            data-share="true"></div>
+    <div class="columnWrapper">
+        <div class="thankYouContent">
+            <h1 class="thankYou">Takk</h1>
+        </div>
+        <div class="thankYouContent">
+            <div    class="fb-like"
+                    data-href="@Model.BaseUrl/day/@Model.CurrentDate.Day"
+                    data-width=""
+                    data-layout="standard"
+                    data-action="like"
+                    data-size="large"
+                    data-show-faces="true"
+                    data-share="true"></div>
+        </div>
+    </div>
 </div>
