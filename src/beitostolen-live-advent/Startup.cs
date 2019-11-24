@@ -154,6 +154,8 @@ namespace beitostolen_live_api
             }
             else
             {
+                UpdateDatabase(app);
+
                 app.UseHsts();
             }
 
@@ -185,6 +187,19 @@ namespace beitostolen_live_api
             var claim = context.User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Email);
 
             return claim != null;
+        }
+
+        private static void UpdateDatabase(IApplicationBuilder app)
+        {
+            using (var serviceScope = app.ApplicationServices
+            .GetRequiredService<IServiceScopeFactory>()
+            .CreateScope())
+            {
+                using (var context = serviceScope.ServiceProvider.GetService<ApplicationDbContext>())
+                {
+                    context.Database.Migrate();
+                }
+            }
         }
     }
 }
